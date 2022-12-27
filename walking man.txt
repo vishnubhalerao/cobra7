@@ -1,0 +1,49 @@
+#include<stdlib.h>
+#include<stdio.h>
+#include<graphics.h>
+
+class WalkingMan{
+
+    public:
+        void draw(int);
+};
+
+void WalkingMan :: draw(int i){
+    // Platform Line
+    line(20,380,580,380);
+
+    if( i%2 ==0){
+
+        line(25+i,380,35+i,340); //left leg
+        line(45+i,380,35+i,340); // right leg
+        line(35+i,310,25+i,330); //left hand
+        delay(20);
+    }
+    else{
+
+        line(35+i,380,35+i,340);
+        line(35+i,310,40+i,330);
+        delay(20);
+    }
+
+    line(35+i,340,35+i,310); //body 
+    circle(35+i,300,10);     //head
+
+}
+
+int main(){
+
+    WalkingMan m;
+    int gd = DETECT ,gm;
+    initgraph(&gd,&gd,NULL);
+
+    for(int i=0;i<500;i +=5){
+        m.draw(i);
+        delay(150);
+        cleardevice();
+    }
+    getch();
+    closegraph();
+
+    return 0;
+}
